@@ -1,11 +1,13 @@
 package com.example.shelf_assignment.dto;
 
+import com.example.shelf_assignment.model.User;
+
 public class ResponseDTO {
     private boolean success;
     private String message;
-    private Object data;
+    private User data;
 
-    public ResponseDTO(boolean success, String message, Object data) {
+    public ResponseDTO(boolean success, String message, User data) {
         this.success = success;
         this.message = message;
         this.data = data;
@@ -27,11 +29,11 @@ public class ResponseDTO {
         this.message = message;
     }
 
-    public Object getData() {
+    public User getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(User data) {
         this.data = data;
     }
 }

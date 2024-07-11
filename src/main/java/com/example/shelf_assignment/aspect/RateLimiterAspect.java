@@ -23,12 +23,12 @@ public class RateLimiterAspect {
         String methodName = joinPoint.getSignature().toShortString();
         long currentTime = System.currentTimeMillis() / 1000;
 
-        RequestCount requestCount = requests.compute(methodName, (k, v) -> {
-            if (v == null || v.timestamp + rateLimit.duration() <= currentTime) {
+        RequestCount requestCount = requests.compute(methodName, (key, val) -> {
+            if (val == null || val.timestamp + rateLimit.duration() <= currentTime) {
                 return new RequestCount(currentTime, 1);
             }
-            v.count++;
-            return v;
+            val.count++;
+            return val;
         });
 
         if (requestCount.count <= rateLimit.limit()) {
