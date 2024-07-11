@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add/{userId}")
+    @PostMapping("/user/{userId}")
     @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> addUser(@RequestBody User user, @PathVariable String userId) {
         if (user.getName() == null || user.getName().isEmpty()) {
@@ -28,7 +28,7 @@ public class UserController {
             .body(response);
     }
 
-    @GetMapping("/get/{userId}")
+    @GetMapping("/user/{userId}")
     @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> getUserById(@PathVariable String userId) {
         if (userId == null || userId.isEmpty()) {
@@ -41,7 +41,7 @@ public class UserController {
             .body(response);
     }
 
-    @PutMapping("/update/{userId}")
+    @PutMapping("/user/{userId}")
     @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> updateUser(@PathVariable String userId, @RequestBody User newUserData) {
         if (newUserData.getName() == null || newUserData.getName().isEmpty()) {
@@ -54,7 +54,7 @@ public class UserController {
             .body(response);
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/user/{userId}")
     @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> deleteUser(@PathVariable String userId) {
         if (userId == null || userId.isEmpty()) {
