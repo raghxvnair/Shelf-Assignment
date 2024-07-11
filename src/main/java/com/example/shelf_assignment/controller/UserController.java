@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add/{userId}")
-    @RateLimit(limit = 10, duration = 60)
+    @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> addUser(@RequestBody User user, @PathVariable String userId) {
         if (user.getName() == null || user.getName().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/get/{userId}")
-    @RateLimit(limit = 20, duration = 60)
+    @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> getUserById(@PathVariable String userId) {
         if (userId == null || userId.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{userId}")
-    @RateLimit(limit = 10, duration = 60)
+    @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> updateUser(@PathVariable String userId, @RequestBody User newUserData) {
         if (newUserData.getName() == null || newUserData.getName().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{userId}")
-    @RateLimit(limit = 5, duration = 60)
+    @RateLimit(limit = 4, duration = 60)
     public ResponseEntity<ResponseDTO> deleteUser(@PathVariable String userId) {
         if (userId == null || userId.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
